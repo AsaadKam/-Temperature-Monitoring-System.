@@ -1,0 +1,16 @@
+/*
+ * ADC_PostBConfig.c
+ *
+ * Created: 06/01/2020 13:43:40
+ *  Author: Native_programmer
+ */ 
+#include "ADC_PostBConfig.h"
+
+gstrADC_Config_t gstr_Temp_sensorConfig={ADC_Channel_0
+	                                    ,ADC_Voltage_Refrence_AVCC
+										,ADC_Freq_125KHZ
+										,ADC_Auto_Trigger_Enable
+										,ADC_Auto_Trig_Source_Timer_Counter1_Overflow_Bits
+										,ADC_Right_Adjustment
+										,ADC_Executed_By_Event_Driven
+										};
