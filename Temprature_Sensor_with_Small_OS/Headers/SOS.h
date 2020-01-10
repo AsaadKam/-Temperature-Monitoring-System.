@@ -97,7 +97,7 @@ extern SOS_Error_t SOS_Init();
  * Input     : void(*PntrToFunc_Copy_SOS_Start)(void)->Pointer to function,Periodicity_MS->Periodicity milisecond
  * Output    : Error Checking
  *_______________________________________________________________________________________________________________________________*/
-extern SOS_Error_t SOS_Create(PntrToFunc_t PntrToFunc_Copy_SOS_Start,uint16_t u16_Copy_Periodicity_MS_SOS_Start,uint16_t u16_Copy_Periodic_or_not_SOS_Start,uint16_t u16_Copy_SOS_TASK_Priority);
+extern SOS_Error_t SOS_Create_Task(PntrToFunc_t PntrToFunc_Copy_SOS_Start,uint16_t u16_Copy_Periodicity_MS_SOS_Start,uint16_t u16_Copy_Periodic_or_not_SOS_Start,uint16_t u16_Copy_SOS_TASK_Priority);
 /*_______________________________________________________________________________________________________________________________*/
 /*Description: SOS Initialization
  * Input     : Without input

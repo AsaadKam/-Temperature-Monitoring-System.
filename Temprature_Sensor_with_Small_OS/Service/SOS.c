@@ -72,7 +72,7 @@ SOS_Error_t SOS_Init()
 }
 
 /***Creat SOS tasks by By initalize array of task of SOS ****/ 
-SOS_Error_t SOS_Create(PntrToFunc_t PntrToFunc_Copy_SOS_Start,uint16_t u16_Copy_Periodicity_MS_SOS_Start,uint16_t u16_Copy_Periodic_or_not_SOS_Start,uint16_t u16_Copy_SOS_TASK_Priority)
+extern SOS_Error_t SOS_Create_Task(PntrToFunc_t PntrToFunc_Copy_SOS_Start,uint16_t u16_Copy_Periodicity_MS_SOS_Start,uint16_t u16_Copy_Periodic_or_not_SOS_Start,uint16_t u16_Copy_SOS_TASK_Priority)
 {
     SOS_Error_t SOS_Start_Error= SOS_Error_OK;
 	
@@ -121,7 +121,8 @@ SOS_Error_t SOS_Create(PntrToFunc_t PntrToFunc_Copy_SOS_Start,uint16_t u16_Copy_
 /***SOS start manage the system for consumers***/
 void SOS_Dispatch(void)
 {
-    uint8_t u8_1st_Loop_Dispatch_Flag=1;
+	
+    uint8_t u8_1st_Loop_Dispatch_Flag=1,u8_Dispatch_all_at_same_time_at_the_start=1;
 	uint64_t u64_Dispatch_Func_Count=0;
     uint64_t u64_SOS_COUNT=0U;
 	while(1)
@@ -154,6 +155,15 @@ void SOS_Dispatch(void)
 		/**If it is not first loop for dispatcher of SOS**/
 		else if((u8_1st_Loop_Dispatch_Flag==0)&&(sgu16_SOS_index!=0))
 		{
+
+			if(u8_Dispatch_all_at_same_time_at_the_start==1)
+			{
+				for(uint64_t u64_i=0;u64_i<sgu16_SOS_index;u64_i++)
+				{
+					sga_SOS_Events[u64_i].PntrToFunc();
+				}
+				u8_Dispatch_all_at_same_time_at_the_start=0;
+			}
 			u64_SOS_COUNT=sgu64_SOS_Timer_ISR_Count;
 			/*Looping to execute the function which it's time comes(Brain of SOS)*/	
 			for(uint64_t u64_i=0;u64_i<sgu16_SOS_index;u64_i++)
