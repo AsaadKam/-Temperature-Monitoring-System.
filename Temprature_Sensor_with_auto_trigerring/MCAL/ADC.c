@@ -247,7 +247,8 @@ ADC_ISR_CODE()
 {
 	DIO_Init_Pin(26,1);
 	DIO_toggle_Pin(26);
-	TIMER_EVENT_FLAGS_REG=1<<3;
+	
+	TIMER_CLR_INT_FLAG(TIMER1_B_COMP_FLAG);
 	
 	if(NullPointer!=sgPntrToFun_ADC_ISR)
 	{

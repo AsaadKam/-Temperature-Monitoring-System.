@@ -147,7 +147,7 @@ uint8_t Timer_Start(uint8_t u8_Copy_TIMER_Start_TIMERChannel,uint32_t u32_Copy_T
 								 * The prescaler divide by 8 and  make countER =1 to get 
 								 * 1 microsecond
 								 ************************************************************/
-								SET_BIT(TIMER_EVENT_FLAGS_REG,TIMER0_Compare_FLAG_BIT);								 
+								TIMER_CLR_INT_FLAG(TIMER0_Compare_FLAG_BIT);								 
 								TIMER0_COMPARE_Register=1U;
 								/*Loop  until overflow happens*/
 								while( BIT_IS_CLR(TIMER_EVENT_FLAGS_REG,TIMER0_Compare_FLAG_BIT) );
@@ -160,7 +160,7 @@ uint8_t Timer_Start(uint8_t u8_Copy_TIMER_Start_TIMERChannel,uint32_t u32_Copy_T
 						else if(sgau8_Interrupt_Mode[TIMER0]==INTERRUPT)
 						{
 
-						     SET_BIT(TIMER_EVENT_FLAGS_REG,TIMER0_Compare_FLAG_BIT);								 
+						     TIMER_CLR_INT_FLAG(TIMER0_Compare_FLAG_BIT);								 
 							 TIMER0_COMPARE_Register=1U;
 							 /*sgu16_TIMER_COUNTER_REG_BUFFER=TIMER0_COUNTER_REG;*/
 							/*Enable OverFlow Interrupt for TIMER (0)*/
@@ -195,7 +195,7 @@ uint8_t Timer_Start(uint8_t u8_Copy_TIMER_Start_TIMERChannel,uint32_t u32_Copy_T
 								 * The prescaler divide by 64 and  make count =125 and  the 
 								 * counter =255-125 to get overflow every mili
 								 ************************************************************/
-								SET_BIT(TIMER_EVENT_FLAGS_REG,TIMER0_Compare_FLAG_BIT);								 
+								TIMER_CLR_INT_FLAG(TIMER0_Compare_FLAG_BIT);						 
 								TIMER0_COMPARE_Register=125U;
 								/*Loop  until overflow happens*/
 								while( BIT_IS_CLR(TIMER_EVENT_FLAGS_REG,TIMER0_Compare_FLAG_BIT) );
@@ -206,7 +206,7 @@ uint8_t Timer_Start(uint8_t u8_Copy_TIMER_Start_TIMERChannel,uint32_t u32_Copy_T
 						else if(sgau8_Interrupt_Mode[TIMER0]==INTERRUPT)
 						{
 							 
-						     SET_BIT(TIMER_EVENT_FLAGS_REG,TIMER0_Compare_FLAG_BIT);								 
+						     TIMER_CLR_INT_FLAG(TIMER0_Compare_FLAG_BIT);								 
 							 TIMER0_COMPARE_Register=125U;
 							/*Enable OverFlow Interrupt for TIMER (0)*/
 				             Timer_0_OCF_INT_EN();			  
@@ -231,14 +231,14 @@ uint8_t Timer_Start(uint8_t u8_Copy_TIMER_Start_TIMERChannel,uint32_t u32_Copy_T
 				/*Check whether it is polled or not*/
 				if(sgau8_Interrupt_Mode[TIMER0]==POLLING)
 				{ 
-                    SET_BIT(TIMER_EVENT_FLAGS_REG,TIMER0_Compare_FLAG_BIT);
+                    TIMER_CLR_INT_FLAG(TIMER0_Compare_FLAG_BIT);
 				    TIMER0_COMPARE_Register=u32_Copy_TIMER_Start_tickCounts;
 					/*Loop  until overflow happens*/
 					while( BIT_IS_CLR(TIMER_EVENT_FLAGS_REG,TIMER0_Compare_FLAG_BIT) );
 				}
 				else if(sgau8_Interrupt_Mode[TIMER0]==INTERRUPT)
 				{
-					 SET_BIT(TIMER_EVENT_FLAGS_REG,TIMER0_Compare_FLAG_BIT);								 
+					 TIMER_CLR_INT_FLAG(TIMER0_Compare_FLAG_BIT);							 
 					 TIMER0_COMPARE_Register=u32_Copy_TIMER_Start_tickCounts;
 					 /*Enable OverFlow Interrupt for TIMER (0)*/
 					 Timer_0_OCF_INT_EN();			  

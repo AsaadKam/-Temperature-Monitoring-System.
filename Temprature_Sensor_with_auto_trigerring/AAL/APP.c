@@ -4,11 +4,9 @@
  * Created: 08/01/2020 13:30:26
  *  Author: ASAAD
  */ 
+
 #include "lcd.h"
 #include "Temp_sensor.h"
-#include "ADC.h"
-
-
 
  int main()
  {
@@ -33,6 +31,11 @@
 	           LCD_integerToString(u32_TEMP_VALUE,1,5);
 			   /**Put the value of the approved sample in buffer of the sample**/
 			   u32_TEMP_VALUE_Buffer=u32_TEMP_VALUE;
+			}
+			else
+			{
+				/**Do Nothing**/
+			}
 		}
  }
  

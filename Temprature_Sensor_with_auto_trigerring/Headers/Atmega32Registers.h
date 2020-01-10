@@ -114,9 +114,14 @@
 //Timer's Interrupt Flags
 #define TIFR    ( *((volatile uint8_t* )(0X58)) )
 #define TOV0    0
-#define TOV1    2
-#define TOV2    6
 #define OCF0    1
+#define TOV1    2
+#define OCF1B   3
+#define OCF1A   4
+#define ICF1    5
+#define TOV2    6
+#define OCF2    7
+
 #define TIMSK   ( *((volatile uint8_t* )(0X59)) )
 #define TOIE0   0
 #define OCIE0   1

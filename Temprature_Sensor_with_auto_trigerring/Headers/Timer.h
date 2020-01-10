@@ -67,7 +67,7 @@ void N (void)
 #define TIMER0_DATA_DIRCETION_Register       DDRB
 #define TIMER0_Wave_Out_BIT                  D11
 
-
+ 
 #define TIMER1_COUNTER_REG                   TCNT1
 #define TIMER1_CNTRL_REG_A                   TCCR1A
 #define TIMER1_CNTRL_REG_CTC_MODE_VALUE_A    0b00000000U
@@ -92,8 +92,8 @@ void N (void)
 #define TIMER2_OVF_COUNT_INT_EN_BIT          TOIE2
 #define TIMER0_Compare_INT_EN_BIT            OCIE0 	
 
-
-#define TIMER1_One_Second_Equivalent_Value  7812U
+#define TIMER1_B_COMP_FLAG                   OCF1B
+#define TIMER1_One_Second_Equivalent_Value   7812U
 /*________________________________________________________________*/
 /******************************************************************/
 /*                        TIMER_CHANNELS                          */
@@ -179,7 +179,7 @@ void N (void)
 /*--Externs-------------------------------------------------*/
 /*- FUNCTION-LIKE MACROS -----------------------------------*/
 /*- FUNCTION DECLARATIONS ---------------------------------*/
-
+#define TIMER_CLR_INT_FLAG(N)   CLR_INT_FLAG(TIMER_EVENT_FLAGS_REG,N)
 /*_______________________________________________________________________________________________________________________________*/
 /*Description: Timer/Counter Initialization
  * Input     : Timer_Configuration_S* ps_Copy_Measurement_ECU_TIMER_Init_Config (Struct contain : Timer Channel, sgau8_Prescaler, Timer mode , Mode as described in Struct)
