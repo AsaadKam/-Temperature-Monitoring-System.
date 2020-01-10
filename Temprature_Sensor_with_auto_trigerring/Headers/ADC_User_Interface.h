@@ -76,8 +76,8 @@ typedef struct
 #define ADC_Auto_Trig_Source_External_Interrupt_Request_0_Bits       64
 #define ADC_Auto_Trig_Source_Timer_Counter_0_Compare_Match_Bits      96
 #define ADC_Auto_Trig_Source_Timer_Counte_0_Overflow_Bits            128
-#define ADC_Auto_Trig_Source_Timer_Counter1_Overflow_Bits            160
-#define ADC_Auto_Trig_Source_Timer_Counter1_Compare_Match_B_Bits     192
+#define ADC_Auto_Trig_Source_Timer_Counter1_Compare_Match_B_Bits     160
+#define ADC_Auto_Trig_Source_Timer_Counter1_Overflow_Bits            192
 #define ADC_Auto_Trig_Source_Timer_Counter1_Capture_Event_Bits       224
 #define ADC_No_Need_To_Trigger                                       225
 

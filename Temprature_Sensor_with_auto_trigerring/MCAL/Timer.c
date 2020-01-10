@@ -258,7 +258,7 @@ uint8_t Timer_Start(uint8_t u8_Copy_TIMER_Start_TIMERChannel,uint32_t u32_Copy_T
 		case TIMER1:
 		{
 		    TIMER1_COMP_REG_A=u32_Copy_TIMER_Start_tickCounts;
-			TIMER1_COUNTER_REG=0;
+            TIMER1_COMP_REG_B=u32_Copy_TIMER_Start_tickCounts;
 		       
 		}
 		break;		
@@ -413,6 +413,7 @@ Timer_ISR(TIMER1_COMPB_VECTOR)
 {
 	sgpfun_TIMER1_CMPB_ISR_Function();
 }
+
 Timer_ISR(TIMER2_COMP_VECTOR)
 {
 	sgpfun_TIMER2_CMP_ISR_Function();

@@ -1,44 +1,38 @@
 /*
  * APP.c
  *
- * Created: 06/01/2020 13:30:26
- *  Author: Native_programmer
+ * Created: 08/01/2020 13:30:26
+ *  Author: ASAAD
  */ 
-#include "SOS.h"
 #include "lcd.h"
+#include "Temp_sensor.h"
 #include "ADC.h"
-#include "ADC_PostBConfig.h"
-#include "DIO.h"
-#include "Timer.h"
-#include "Timer_PostBConfig.h"
-uint32_t gu32_ADC_DATA=0;
-uint8_t  gu8_Task_Init_Flag=1;
-uint8_t  gu8_Task_LCD_Flag=0;
-uint8_t  gu8_Task_ADC_Flag=0;
-uint8_t  gu8_ADC_value=12;
 
-void ADC_ISR_Function(void )
-{
-	
-}
 
 
  int main()
  {
-		uint8_t u8_ADC_value_buffer=0;
-		ADC_INIT(&gstr_Temp_sensorConfig);
-		ADC_READ(&gu8_ADC_value,ADC_ISR_Function,NullPointer);
-
-		Timer_Init(&TEMP_TIMER_Init_Config);
-		Timer_Start(TIMER1,7812U,NullPointer);
-
+	    /*Initialize Variables for temp. sensor*/
+		uint32_t  u32_TEMP_VALUE=0;
+		uint32_t  u32_TEMP_VALUE_Buffer=0;/*This for making decision to print the current read value or not*/
+		/**Inialize Temprature sensor**/
+		TEMP_SENSOR_INIT();
+		/**Inialize LCD**/
 		LCD_init();
+		/**Display string "Temp=" LCD**/		
 		LCD_displayString("TEMP=");
 
 		while(1)
 		{
-			ADC_READ(&gu8_ADC_value,ADC_ISR_Function,NullPointer);
-            LCD_integerToString(gu8_ADC_value/2.049,1,5);
+			/**Read the value and put it in u32_TEMP_VALUE register**/
+		    TEMP_SENSOR_READ(&u32_TEMP_VALUE);
+			/**Make decison if i am going to display the string of integer on screen or not**/
+		    if(u32_TEMP_VALUE!=u32_TEMP_VALUE_Buffer)
+			{
+			   /**Display the string of integer on the screen in postion row->>1 and column->>5 **/
+	           LCD_integerToString(u32_TEMP_VALUE,1,5);
+			   /**Put the value of the approved sample in buffer of the sample**/
+			   u32_TEMP_VALUE_Buffer=u32_TEMP_VALUE;
 		}
  }
  

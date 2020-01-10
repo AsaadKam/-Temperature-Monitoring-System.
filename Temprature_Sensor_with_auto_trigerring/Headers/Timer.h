@@ -93,7 +93,7 @@ void N (void)
 #define TIMER0_Compare_INT_EN_BIT            OCIE0 	
 
 
-
+#define TIMER1_One_Second_Equivalent_Value  7812U
 /*________________________________________________________________*/
 /******************************************************************/
 /*                        TIMER_CHANNELS                          */

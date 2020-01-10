@@ -171,13 +171,6 @@ ADC_Error_t ADC_READ(uint32_t* Copyu32_ADC_Value,PntrToFunc_t Copy_PntrToFunc_Re
 			 if(sgu8_ADC_Execution_Way!=ADC_Executed_By_Time_Driven)
 			 {
 				
-				if(Event_Driven_1st_time==1)
-				{
-					ADC_Interrupt_Enable();
-					ADC_Start_Conversion();
-					Event_Driven_1st_time=0;
-				}
-			
 			    /*while(ADC_Read_Interrupt_Flag_State()==0);*/
 				/**Check If PntrToFunction does'nt point to NullPointer**/
 				if(NullPointer!=Copy_PntrToFunc_Requsted_From_User_Called_In_ADC_ISR)
@@ -208,7 +201,6 @@ ADC_Error_t ADC_READ(uint32_t* Copyu32_ADC_Value,PntrToFunc_t Copy_PntrToFunc_Re
 				{
 					case 0:
 					{
-
 				        ADC_Start_Conversion();
 						sgu8_ADC_READ_STATE=1;
 					}
@@ -253,12 +245,14 @@ ADC_Error_t ADC_READ(uint32_t* Copyu32_ADC_Value,PntrToFunc_t Copy_PntrToFunc_Re
  
 ADC_ISR_CODE()
 {
+	DIO_Init_Pin(26,1);
+	DIO_toggle_Pin(26);
+	TIMER_EVENT_FLAGS_REG=1<<3;
+	
 	if(NullPointer!=sgPntrToFun_ADC_ISR)
 	{
 			sgPntrToFun_ADC_ISR();
-			DIO_Init_Pin(26,1);
-			DIO_toggle_Pin(26);
-            TIMER_EVENT_FLAGS_REG=1<<2;
+
   	}
 	else
 	{
