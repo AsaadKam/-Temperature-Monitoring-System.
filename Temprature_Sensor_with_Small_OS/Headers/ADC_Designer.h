@@ -57,7 +57,8 @@ typedef uint8_t ADC_Error_t;
                                                                    SET_PORT_WITH_VALUE(ADC_CNTRL_STATUS_REG,ADC_Interrupt_Enable_Bit)
 #define ADC_Interrupt_Disable()                                    RESET_PORT_WITH_VALUE(ADC_CNTRL_STATUS_REG,ADC_Interrupt_Enable_Bit); \
 																   SET_PORT_WITH_VALUE(ADC_CNTRL_STATUS_REG,ADC_Interrupt_Enable_Bit)
-																   
+#define ADC_CLR_INT_FLAG(FLAG)                                     CLR_INT_FLAG(ADC_CNTRL_STATUS_REG,ADC_Interrupt_flag_Bit)
+
 /************************************************************************/
 /*	The successive approximation circuitry requires an input clock 
 	frequency between 50kHz and 200 kHz to get maximum resolution. 
